@@ -29,6 +29,7 @@ public class TokenRepository : ITokenRepository
 
            var refreshToken = GenerateRefreshToken();
            var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+           var accessTokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["JWT:ExpiryMinutes"]));
 
            user.RefreshToken = refreshToken;
 
@@ -38,10 +39,10 @@ public class TokenRepository : ITokenRepository
 
            await _userManager.UpdateAsync(user);
 
-
            return new TokenDTO{
                 AccessToken = accessToken,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken, 
+                AccessTokenExpiryTime = accessTokenExpiryTime
            };
     }
 
@@ -95,7 +96,18 @@ public class TokenRepository : ITokenRepository
         context.Response.Cookies.Append("refreshToken", tokenDTO.RefreshToken, 
             new CookieOptions
             {
-                Expires = DateTimeOffset.UtcNow.AddDays(7),
+                Expires = DateTimeOffset.UtcNow.AddDays(5),
+                HttpOnly = true,
+                IsEssential = true,
+                Secure = false,
+                SameSite = SameSiteMode.Lax
+            }
+        );
+
+        context.Response.Cookies.Append("accessTokenExpiryTime", tokenDTO.AccessTokenExpiryTime.ToString(), 
+            new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(5),
                 HttpOnly = true,
                 IsEssential = true,
                 Secure = false,

@@ -154,6 +154,7 @@ D:\SWD392\be\obj\Debug\net9.0\be.AssemblyInfo.cs
 D:\SWD392\be\obj\Debug\net9.0\be.csproj.CoreCompileInputs.cache
 D:\SWD392\be\obj\Debug\net9.0\be.MvcApplicationPartsAssemblyInfo.cs
 D:\SWD392\be\obj\Debug\net9.0\be.MvcApplicationPartsAssemblyInfo.cache
+D:\SWD392\be\obj\Debug\net9.0\be.sourcelink.json
 D:\SWD392\be\obj\Debug\net9.0\scopedcss\bundle\be.styles.css
 D:\SWD392\be\obj\Debug\net9.0\staticwebassets.build.json
 D:\SWD392\be\obj\Debug\net9.0\staticwebassets.development.json

@@ -1,0 +1,2 @@
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const MAX_TIME_REFRESH = 60 * 1000;
