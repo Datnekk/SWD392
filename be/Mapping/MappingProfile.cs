@@ -11,7 +11,6 @@ public class MappingProfile : Profile
         CreateMap<RegisterDTO, User>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
-            
         CreateMap<User, AuthResponseDTO>();
     }
 }

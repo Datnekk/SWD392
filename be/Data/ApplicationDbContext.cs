@@ -8,8 +8,10 @@ namespace be.Data;
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User, IdentityRole<Guid>, Guid>(options)
 {
     public DbSet<User> User { get; set; }
-    public DbSet<Session> Sessions { get; set; }
-    public DbSet<Quiz> Quizzes { get; set; }
+    public DbSet<Examination> Examination { get; set; }
+    public DbSet<Result> Result { get; set; }
+    public DbSet<Subject> Subject { get; set; }
+    public DbSet<Warning> Warning { get; set; }
     public DbSet<Question> Questions { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);
@@ -21,30 +23,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         ];  
         modelBuilder.Entity<IdentityRole<Guid>>().HasData(roles);
 
-        // User → Session (One-to-Many)
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.CurrentSession)
-            .WithMany(s => s.Users)
-            .HasForeignKey(u => u.CurrentSessionId)
-            .IsRequired(false);
-        
-        // User → Quiz (One-to-Many)
-        modelBuilder.Entity<User>()
-            .HasMany(u => u.CreatedQuizzes)
-            .WithOne(q => q.Creator)
-            .HasForeignKey(q => q.CreatorId);
-
-        // Session → Quiz (One-to-One)
-        modelBuilder.Entity<Session>()
-            .HasOne(s => s.Quiz)
-            .WithOne()
-            .HasForeignKey<Session>(s => s.QuizId);
-        
-        // Quiz ↔ Question (Many-to-Many)
-        modelBuilder.Entity<Quiz>()
-            .HasMany(q => q.Questions)
-            .WithMany(q => q.Quizzes)
-            .UsingEntity(j => j.ToTable("QuizQuestions"));
+        //Model Relation Here
 
         //Composite keys for Identity tables
         modelBuilder.Entity<IdentityUserLogin<Guid>>().HasKey(x => new { x.LoginProvider, x.ProviderKey });

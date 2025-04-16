@@ -9,6 +9,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<ITokenRepository, TokenRepository>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
         return services;
     }
 }
