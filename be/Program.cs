@@ -2,6 +2,7 @@
 using be.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddOpenApi();
 builder.Services.AddControllersServices();
 builder.Services.AddDatabaseServices(builder.Configuration);
@@ -13,6 +14,7 @@ builder.Services.AddCorsServices(builder.Configuration, builder.Environment);
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
 app.MapOpenApi();
 app.UseRouting();
 app.UseAuthentication();

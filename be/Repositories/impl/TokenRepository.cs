@@ -85,7 +85,7 @@ public class TokenRepository : ITokenRepository
         context.Response.Cookies.Append("accessToken", tokenDTO.AccessToken, 
             new CookieOptions
             {
-                Expires = DateTimeOffset.UtcNow.AddDays(5),
+                Expires = DateTimeOffset.UtcNow.AddMinutes(10),
                 HttpOnly = true,
                 IsEssential = true,
                 Secure = false,
@@ -94,17 +94,6 @@ public class TokenRepository : ITokenRepository
         );
 
         context.Response.Cookies.Append("refreshToken", tokenDTO.RefreshToken, 
-            new CookieOptions
-            {
-                Expires = DateTimeOffset.UtcNow.AddDays(5),
-                HttpOnly = true,
-                IsEssential = true,
-                Secure = false,
-                SameSite = SameSiteMode.Lax
-            }
-        );
-
-        context.Response.Cookies.Append("accessTokenExpiryTime", tokenDTO.AccessTokenExpiryTime.ToString(), 
             new CookieOptions
             {
                 Expires = DateTimeOffset.UtcNow.AddDays(5),

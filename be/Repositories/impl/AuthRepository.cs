@@ -23,7 +23,7 @@ public class AuthRepository : IAuthRepository
 
     public async Task<AuthResponseDTO> LoginAsync(LoginDTO loginDTO)
     {
-        var user = await _userManager.FindByNameAsync(loginDTO.UserName!);
+        var user = await _userManager.FindByEmailAsync(loginDTO.Email!);
 
         if(user is null || !await _userManager.CheckPasswordAsync(user, loginDTO.Password!)){
             return new AuthResponseDTO{
@@ -70,6 +70,31 @@ public class AuthRepository : IAuthRepository
         response.IsAuthSuccessful = true;
 
         return response;
+    }
+
+    public async Task<UserDTO?> GetCurrentUserAsync()
+    {
+        var httpContext = _httpContextAccessor.HttpContext ?? throw new InvalidOperationException("HttpContext is not available.");
+
+        if (httpContext?.User?.Identity?.IsAuthenticated != true)
+        {
+            return null;
+        }
+
+        var user = await _userManager.GetUserAsync(httpContext.User) ?? throw new UnauthorizedAccessException("No authenticated user found.");
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        var roles = await _userManager.GetRolesAsync(user);
+
+        var userDto = _mapper.Map<UserDTO>(user);
+
+        userDto.Roles = roles;
+
+        return userDto;
     }
 
     public async Task LogoutAsync()

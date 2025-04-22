@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientOnly from "@/app/components/navbar/ClientOnly";
 import ToasterProvider from "./providers/ToasterProvider";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
         <ClientOnly>
           <ToasterProvider></ToasterProvider>
         </ClientOnly>
-        <div className="pt-28 pb-20">{children}</div>
+        <div className={cn("antialiased min-h-screen pt-16")}>{children}</div>
       </body>
     </html>
   );

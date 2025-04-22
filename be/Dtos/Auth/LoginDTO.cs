@@ -5,12 +5,10 @@ namespace be.Dtos.Auth
 {
     public class LoginDTO
     {
-        [Required(ErrorMessage = "Username Is Required")]
-        [JsonPropertyName("username")]
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "Email Is Required")]
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Password Is Required")]
-        [JsonPropertyName("password")]
         public string Password { get; set; }        
     }
 }
