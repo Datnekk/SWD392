@@ -4844,32 +4844,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\quang\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\quang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\quang\\CODE\\SWD392\\SWD392\\be\\be.csproj",
+      "projectUniqueName": "D:\\SWD392\\be\\be.csproj",
       "projectName": "be",
-      "projectPath": "C:\\Users\\quang\\CODE\\SWD392\\SWD392\\be\\be.csproj",
+      "projectPath": "D:\\SWD392\\be\\be.csproj",
       "packagesPath": "C:\\Users\\quang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\quang\\CODE\\SWD392\\SWD392\\be\\obj\\",
+      "outputPath": "D:\\SWD392\\be\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\quang\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

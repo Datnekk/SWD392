@@ -5,10 +5,11 @@ namespace be.Data.Models;
 public class Result
 {
     [Key]
-    public Guid Certificate_no { get; set; }
-    public Guid Exam_id { get; set; }
-    public string Student_name { get; set; }
-    public double Grade_obtained { get; set; }
+    public int Result_id { get; set; }
+    public int User_id { get; set; }
+    public int Exam_id { get; set; }
+    public double Grade { get; set; }
     public DateTime Created_at { get; set; } = DateTime.UtcNow;
+    public User User { get; set; }
     public Examination Examination { get; set; }
 }

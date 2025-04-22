@@ -5,31 +5,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace be.Data;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User, IdentityRole<Guid>, Guid>(options)
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User, IdentityRole<int>, int>(options)
 {
     public DbSet<User> User { get; set; }
+    public DbSet<UserExamination> UserExamination { get; set; }
     public DbSet<Examination> Examination { get; set; }
     public DbSet<Result> Result { get; set; }
     public DbSet<Subject> Subject { get; set; }
     public DbSet<Warning> Warning { get; set; }
-    public DbSet<Question> Questions { get; set; }
+    public DbSet<Question> Question { get; set; }
+    public DbSet<Answer> Answer { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         
-        List<IdentityRole<Guid>> roles =
+        List<IdentityRole<int>> roles =
         [
-            new IdentityRole<Guid> {Id = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567890"), Name = "Student", NormalizedName = "STUDENT"},
-            new IdentityRole<Guid> {Id = new Guid("b2c3d4e5-f678-9012-bcde-f12345678901"), Name = "Proctors ", NormalizedName = "PROCTORS"},
+            new IdentityRole<int> {Id = 1, Name = "Student", NormalizedName = "STUDENT"},
+            new IdentityRole<int> {Id = 2, Name = "Proctors ", NormalizedName = "PROCTORS"},
         ];  
-        modelBuilder.Entity<IdentityRole<Guid>>().HasData(roles);
+        modelBuilder.Entity<IdentityRole<int>>().HasData(roles);
 
-        //Model Relation Here
+        modelBuilder.Entity<IdentityUserLogin<int>>().HasKey(x => new { x.LoginProvider, x.ProviderKey });
 
-        //Composite keys for Identity tables
-        modelBuilder.Entity<IdentityUserLogin<Guid>>().HasKey(x => new { x.LoginProvider, x.ProviderKey });
-
-        modelBuilder.Entity<IdentityUserRole<Guid>>().HasKey(x => new { x.UserId, x.RoleId });
+        modelBuilder.Entity<IdentityUserRole<int>>().HasKey(x => new { x.UserId, x.RoleId });
             
-        modelBuilder.Entity<IdentityUserToken<Guid>>().HasKey(x => new { x.UserId, x.LoginProvider, x.Name });
+        modelBuilder.Entity<IdentityUserToken<int>>().HasKey(x => new { x.UserId, x.LoginProvider, x.Name });
     }
 }

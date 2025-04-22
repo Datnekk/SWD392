@@ -4,8 +4,8 @@ namespace be.Repositories.impl;
 
 public class QuestionRepository : IQuestionRepository
 {
-    private readonly IQuestionRepository _questionRepository;
-    public QuestionRepository(IQuestionRepository questionRepository)
+    private readonly IRepositoryAsync<Question> _questionRepository;
+    public QuestionRepository(IRepositoryAsync<Question> questionRepository)
     {
         _questionRepository = questionRepository;
     }

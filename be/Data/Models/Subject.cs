@@ -5,7 +5,7 @@ namespace be.Data.Models;
 public class Subject
 {
   [Key]
-  public Guid Subject_id { get; set; }
+  public int Subject_id { get; set; }
   public string Subject_code { get; set; }
   public string Subject_name { get; set; }
   public DateTime Created_at { get; set; } = DateTime.UtcNow;

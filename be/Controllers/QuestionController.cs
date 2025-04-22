@@ -18,8 +18,8 @@ public class QuestionController : ControllerBase
         _questionRepository = questionRepository;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken){
+    // [HttpGet]
+    // public async Task<IActionResult> GetAll(CancellationToken cancellationToken){
         
-    }
+    // }
 }

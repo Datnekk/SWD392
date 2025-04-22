@@ -7,7 +7,7 @@ namespace be.Extensions
     public static class IdentityExtensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services){
-            services.AddIdentity<User, IdentityRole<Guid>>(options => {
+            services.AddIdentity<User, IdentityRole<int>>(options => {
 
                     //Creds Config
                     options.User.RequireUniqueEmail = true;
