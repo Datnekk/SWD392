@@ -9,9 +9,11 @@ public static class ScalarExtensions
         if (environment.IsDevelopment()){
             endpoint.MapScalarApiReference(options => 
             {
-                options.WithTitle("SWD392");
-                options.WithTheme(ScalarTheme.BluePlanet);
-                options.WithSidebar(false);	
+                options.Title = "SWD392";
+                options.Theme = ScalarTheme.BluePlanet;
+                options.DefaultHttpClient = new (ScalarTarget.CSharp, ScalarClient.HttpClient);
+                options.CustomCss = "";
+                options.ShowSidebar = true;
             });
         }
 

@@ -18,8 +18,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         entity.Property(u => u.UserName)
             .IsRequired(false)
             .HasMaxLength(255);
-        entity.Property(u => u.RefreshTokenExpiryTime)
-            .IsRequired(false);
         entity.HasMany(u => u.UserExaminations)
             .WithOne(ue => ue.User)
             .HasForeignKey(ue => ue.User_id)

@@ -8,7 +8,7 @@ public class UserExaminationConfiguration : IEntityTypeConfiguration<UserExamina
 {
     public void Configure(EntityTypeBuilder<UserExamination> entity)
     {
-        entity.ToTable("AspNetUsers_Examination");
+        entity.ToTable("AspNetUsers_Examinations");
         entity.HasKey(ue => new {ue.User_id, ue.Exam_id});
         entity.HasOne(ue => ue.User)
             .WithMany(u => u.UserExaminations)
