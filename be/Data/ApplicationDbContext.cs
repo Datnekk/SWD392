@@ -24,6 +24,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         [
             new IdentityRole<int> {Id = 1, Name = "Student", NormalizedName = "STUDENT"},
             new IdentityRole<int> {Id = 2, Name = "Proctors ", NormalizedName = "PROCTORS"},
+            new IdentityRole<int> {Id = 3, Name = "Admin", NormalizedName = "ADMIN"},
         ];  
         modelBuilder.Entity<IdentityRole<int>>().HasData(roles);
 

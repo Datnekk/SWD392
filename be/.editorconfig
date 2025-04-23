@@ -14,3 +14,6 @@ dotnet_diagnostic.CS8602.severity = none
 
 # CS8601: Possible null reference assignment.
 dotnet_diagnostic.CS8601.severity = none
+
+# IDE0290: Use primary constructor
+dotnet_diagnostic.IDE0290.severity = none

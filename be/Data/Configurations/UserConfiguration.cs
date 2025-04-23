@@ -1,4 +1,5 @@
 using be.Data.Models;
+using be.Data.Models.enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,6 +10,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> entity)
     {
         entity.Property(u => u.Id).HasColumnName("User_id");
+        entity.Property(u => u.Status)
+            .IsRequired(true)
+            .HasConversion<int>()
+            .HasDefaultValue(Status.DeActive);
         entity.Property(u => u.RefreshToken)
             .IsRequired(false)
             .HasMaxLength(100);
