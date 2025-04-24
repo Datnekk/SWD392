@@ -1,4 +1,5 @@
 using be.Dtos.Auth;
+using be.Dtos.User;
 
 namespace be.Repositories;
 

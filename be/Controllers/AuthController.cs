@@ -102,7 +102,7 @@ namespace be.Controllers
             
         }
 
-        [HttpPost("me")]
+    [HttpPost("me")]
         [Authorize]
         public async Task<IActionResult> GetCurrentUserAsync()
         {

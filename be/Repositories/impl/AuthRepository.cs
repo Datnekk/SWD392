@@ -1,6 +1,8 @@
 using AutoMapper;
 using be.Data.Models;
+using be.Data.Models.enums;
 using be.Dtos.Auth;
+using be.Dtos.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace be.Repositories.impl;
@@ -31,13 +33,16 @@ public class AuthRepository : IAuthRepository
                 ErrorMessage = "Invalid Authentication"
             };
         }
-       var tokenDTO = await _tokenRepository.CreateJWTTokenAsync(user, populateExp: true);
+        user.Status = Status.Active;
+        await _userManager.UpdateAsync(user);
 
-       _tokenRepository.SetTokenCookie(tokenDTO, _httpContextAccessor.HttpContext);
+        var tokenDTO = await _tokenRepository.CreateJWTTokenAsync(user, populateExp: true);
 
-       return new AuthResponseDTO{
+        _tokenRepository.SetTokenCookie(tokenDTO, _httpContextAccessor.HttpContext);
+
+        return new AuthResponseDTO{
             IsAuthSuccessful = true,
-       };
+        };
     }
 
     public async Task<AuthResponseDTO> RegisterAsync(RegisterDTO registerDTO)
@@ -99,6 +104,12 @@ public class AuthRepository : IAuthRepository
 
     public async Task LogoutAsync()
     {
+        var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext?.User);
+        if (user != null)
+        {
+            user.Status = Status.DeActive;
+            await _userManager.UpdateAsync(user);
+        }
         _tokenRepository.DeleteTokenCookie(_httpContextAccessor.HttpContext);
         await _signInManager.SignOutAsync();
     }

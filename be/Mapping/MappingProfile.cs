@@ -1,7 +1,9 @@
 using AutoMapper;
 using be.Data.Models;
+using be.Data.Models.enums;
 using be.Dtos.Auth;
 using be.Dtos.Examination;
+using be.Dtos.User;
 
 namespace be.Mapping;
 
@@ -16,7 +18,8 @@ public class MappingProfile : Profile
         CreateMap<User, UserDTO>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.Parse<Status>(src.Status)));
         CreateMap<ExaminationDTO, Examination>()
             .ForMember(dest => dest.Exam_name, opt => opt.MapFrom(src => src.Exam_name))
             .ForMember(dest => dest.Exam_password, opt => opt.MapFrom(src => src.Exam_password))

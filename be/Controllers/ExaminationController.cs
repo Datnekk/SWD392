@@ -38,7 +38,7 @@ namespace be.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
             try
@@ -58,8 +58,8 @@ namespace be.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Create([FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateAsync([FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
         {
             try
             {
@@ -79,8 +79,8 @@ namespace be.Controllers
         }
 
         [HttpPut("{id:int}")]
-        [Authorize]
-        public async Task<IActionResult> Update(int id, [FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
         {
             try
             {
@@ -104,8 +104,8 @@ namespace be.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize]
-        public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteAsync(int id, CancellationToken cancellationToken)
         {
             try
             {
