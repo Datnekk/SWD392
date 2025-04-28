@@ -10,6 +10,8 @@ public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     {
         entity.ToTable("Subjects");
         entity.HasKey(s => s.Subject_id);
+        entity.Property(s => s.Subject_id)
+            .ValueGeneratedOnAdd();
         entity.Property(s => s.Subject_code)
             .IsRequired(true)
             .HasMaxLength(255);

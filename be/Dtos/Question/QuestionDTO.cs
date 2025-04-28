@@ -1,9 +1,9 @@
-using be.Data.Models.enums;
-
 namespace be.Dtos.Question;
 
 public class QuestionDTO
 {
-    public string Text { get; set; }
-    public QuestionType QuestionType { get; set; } 
+    public int Question_id { get; set; }
+    public int Subject_id { get; set; }
+    public string Question_text { get; set; }
+    public string Question_type { get; set; }
 }

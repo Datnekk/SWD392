@@ -15,6 +15,7 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
 app.MapOpenApi();
 app.UseRouting();
 app.UseAuthentication();

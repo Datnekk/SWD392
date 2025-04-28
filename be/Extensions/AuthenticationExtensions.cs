@@ -1,6 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -23,7 +23,7 @@ public static class AuthenticationExtensions
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
                 NameClaimType = JwtRegisteredClaimNames.Sub,
-                RoleClaimType = "role"
+                RoleClaimType = ClaimTypes.Role
             };
 
             options.Events = new JwtBearerEvents

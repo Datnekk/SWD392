@@ -159,7 +159,8 @@ public class TokenRepository : ITokenRepository
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"])),
             ValidateLifetime = true,
             ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"]
+            ValidAudience = jwtSettings["Audience"],
+            RoleClaimType = ClaimTypes.Role
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();

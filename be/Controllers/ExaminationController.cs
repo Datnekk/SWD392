@@ -39,6 +39,7 @@ namespace be.Controllers
 
         [HttpGet("{id:int}")]
         [Authorize(Roles = "Admin")]
+        [ActionName(nameof(GetByIdAsync))]
         public async Task<IActionResult> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
             try
@@ -59,17 +60,18 @@ namespace be.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateAsync([FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAsync([FromBody] ExaminationCreateDTO examDto, CancellationToken cancellationToken)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 
-
                 var exam = _mapper.Map<Examination>(examDto);
+
                 await _examinationRepository.AddAsync(exam, cancellationToken);
-                return CreatedAtAction(nameof(GetByIdAsync), new { id = exam.Exam_id }, examDto);
+
+                return CreatedAtAction(nameof(GetByIdAsync), new { id = exam.Exam_id }, _mapper.Map<ExaminationDTO>(exam));
             }
             catch (Exception ex)
             {
@@ -80,7 +82,7 @@ namespace be.Controllers
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateAsync(int id, [FromBody] ExaminationDTO examDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] ExaminationCreateDTO examDto, CancellationToken cancellationToken)
         {
             try
             {
